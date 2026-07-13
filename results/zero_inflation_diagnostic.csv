@@ -1,0 +1,9 @@
+﻿"metric","value"
+"included_rows",3121
+"observed_zero_count",2767
+"observed_zero_proportion",0.8865748157641782
+"NB_size_mean",0.8865688903328595
+"mean_predicted_zero_probability",0.8824061321207803
+"expected_zero_count_from_mean_predicted_probability",2753.989538348946
+"residual_raw_moran_p",0.5462626484020325
+"residual_pearson_moran_p",0.5539243357376731

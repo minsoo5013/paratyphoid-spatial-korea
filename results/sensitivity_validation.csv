@@ -1,0 +1,8 @@
+check,value,expected,tolerance,status
+cutpoint_direction_consistent_all,1,1,0,PASS
+model_sensitivity_elevated_zero_all,1,1,0,PASS
+island_knn_elevated_zero,1,1,0,PASS
+lisa_fdr_zero_all,1,1,0,PASS
+early_eb_mean_moran_greater_than_contemporary,1,1,0,PASS
+observed_zero_pct_close_to_locked,0.8865748157641782,0.887,0.01,PASS
+predicted_zero_pct_close_to_locked,0.8824061321207803,0.882,0.01,PASS

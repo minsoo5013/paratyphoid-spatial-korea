@@ -1,0 +1,25 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# INLA scratch
+inla.model/
+*.inla
+
+# OS
+.DS_Store
+Thumbs.db
+
+# large / raw inputs not for redistribution
+data/raw/
+*.shp
+*.shx
+*.dbf
+*.prj
+*.gpkg
+
+# rendered scratch
+*.log
+*.aux

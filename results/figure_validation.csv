@@ -1,0 +1,8 @@
+file,exists,bytes,status
+Figure1_period_maps.png,TRUE,964363,PASS
+Figure1_period_maps.py,TRUE,13456,PASS
+Figure1_caption.txt,TRUE,636,PASS
+Figure1_data_used.csv,TRUE,90085,PASS
+Figure2_moran_cases.png,TRUE,273483,PASS
+Figure2_moran_cases.py,TRUE,9153,PASS
+Figure2_caption.txt,TRUE,588,PASS

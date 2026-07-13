@@ -1,0 +1,4 @@
+check,value,expected,status
+queen_nodes,223,223,PASS
+queen_directed_edges,1174,1174,PASS
+queen_isolates,0,0,PASS

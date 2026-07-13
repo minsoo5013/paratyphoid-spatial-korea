@@ -1,0 +1,6 @@
+check,value,expected,status
+annual_rows,5352,5352,PASS
+annual_districts,223,223,PASS
+year_min,2001,2001,PASS
+year_max,2024,2024,PASS
+total_cases,1139,1139,PASS

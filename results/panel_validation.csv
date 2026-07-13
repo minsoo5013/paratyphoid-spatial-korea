@@ -1,0 +1,10 @@
+check,value,expected,status
+model_panel_rows,3121,3121,PASS
+model_panel_districts,223,223,PASS
+model_panel_year_min,2011,2011,PASS
+model_panel_year_max,2024,2024,PASS
+model_panel_cases,462,462,PASS
+missing_cases,0,0,PASS
+missing_population,0,0,PASS
+nonpositive_population,0,0,PASS
+fixed_covariates_present,1,1,PASS

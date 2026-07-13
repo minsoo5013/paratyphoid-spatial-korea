@@ -1,0 +1,13 @@
+﻿check,value,expected,status
+output_format,PNG only,PNG only,PASS
+annual_years,2001-2024,2001-2024,PASS
+district_set,223,223,PASS
+cases_2002,401,401,PASS
+significant_point_rule,filled=p<0.05; open=p>=0.05,filled=p<0.05; open=p>=0.05,PASS
+vertical_dashed,2010.5 medium-light grey,2010.5 medium-light grey,PASS
+text_annotations,none,none,PASS
+palette,black/grey (no red),black/grey (no red),PASS
+line_color,#333333,#333333,PASS
+bar_2002_color,#8F969C,#8F969C,PASS
+font_family,Arial,Arial,PASS
+dpi,600,600,PASS

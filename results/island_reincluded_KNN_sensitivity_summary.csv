@@ -1,0 +1,2 @@
+﻿"n_districts","k_value","included_rows","included_cases","elevated_district_count","lower_district_count","residual_moran_raw","residual_moran_raw_p","residual_moran_pearson","residual_moran_pearson_p","DIC","WAIC","mode_status","CPO_failure_count","runtime_seconds","main_conclusion_changed"
+229,4,3205,468,0,0,0.007943197977424063,0.38148108404174025,0.030889323798673353,0.19470614391406577,2501.6851874870713,2503.2743062478316,"0",0,4.705801010131836,"no"

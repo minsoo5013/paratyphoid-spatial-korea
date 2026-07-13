@@ -1,0 +1,28 @@
+{
+  "title": "Changing spatial patterns of paratyphoid fever in South Korea, 2001-2024: analysis code and derived data",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "description": "Analysis code and derived district-year data reproducing the spatial-autocorrelation description and the negative-binomial Bayesian spatiotemporal (BYM + RW1 + IID) model for paratyphoid fever in South Korea, 2001-2024, across 223 connected districts under queen contiguity. Accompanies the manuscript by Lee and Kim. Fitted with R-INLA; random seed 20260713.",
+  "creators": [
+    {
+      "name": "Lee, MinSoo",
+      "affiliation": "School of Bio-Health Convergence, Hongik University, Seoul, Republic of Korea",
+      "orcid": "0009-0006-5105-6401"
+    },
+    {
+      "name": "Kim, Seongdae",
+      "affiliation": "School of Bio-Health Convergence, Hongik University, Seoul, Republic of Korea",
+      "orcid": "0000-0002-1525-0091"
+    }
+  ],
+  "keywords": [
+    "paratyphoid fever",
+    "spatial autocorrelation",
+    "Bayesian spatiotemporal analysis",
+    "Moran's I",
+    "BYM",
+    "R-INLA",
+    "South Korea"
+  ]
+}

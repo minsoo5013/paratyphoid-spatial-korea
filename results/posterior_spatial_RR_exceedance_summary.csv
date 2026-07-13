@@ -1,0 +1,10 @@
+﻿"metric","value"
+"n_districts",223
+"n_elevated_by_95CrI_lower_gt_1",0
+"n_Pr_RR_gt_1_gt_0_8",18
+"n_Pr_RR_gt_1_gt_0_9",2
+"max_Pr_RR_gt_1",0.9213473358822986
+"RR_median_min",0.8204466391905482
+"RR_median_max",1.4113514768549404
+"RR_CrI_lower_min",0.2993682479781058
+"RR_CrI_upper_max",2.7848579392546156
