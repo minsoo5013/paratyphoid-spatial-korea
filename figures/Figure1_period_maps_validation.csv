@@ -1,0 +1,13 @@
+﻿check,value,expected,status
+output_formats,PNG and TIFF,PNG and TIFF,PASS
+analysis_districts,223,223,PASS
+period_rows,446,446,PASS
+removed_island_count,6,6,PASS
+national_geumjeong_outline,none (removed),none (removed),PASS
+busan_inset,"Panel A, small locator in whitespace","Panel A, small locator in whitespace",PASS
+inset_geumjeong_label,none,none,PASS
+shared_breaks,0; >0-0.05; 0.05-0.10; 0.10-0.25; 0.25-0.75; >0.75,0; >0-0.05; 0.05-0.10; 0.10-0.25; 0.25-0.75; >0.75,PASS
+font_family,Arial,Arial,PASS
+panel_label_pt,10.0 bold / 10.0 reg,10.0 bold / 10.0 reg,PASS
+legend_title_pt,8.7 regular,8.7 regular,PASS
+dpi,600,600,PASS

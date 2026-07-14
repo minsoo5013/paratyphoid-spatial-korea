@@ -8,7 +8,7 @@ Journal-minimal redesign:
   * Panel A gets a small unobtrusive Busan inset that zooms the metro and marks
     Geumjeong-gu with a thin black outline (tiny label, thin grey inset border)
   * fonts ~15-20% smaller than the previous final; bold only on panel letters
-  * 600-dpi PNG
+  * 600-dpi PNG and LZW-compressed TIFF
 
 Administrative boundary files are not redistributed. Place final.shp, final.shx,
 and final.dbf under data/raw/ to regenerate the map.
@@ -30,12 +30,13 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from PIL import Image
 from matplotlib.patches import Patch
 
 
 DPI = 600
-FIG_W = 5.6
-FIG_H = 4.4
+FIG_W = 4488 / DPI
+FIG_H = 4.4 * (FIG_W / 5.6)
 
 # --- typography (~17% smaller than previous final) ---
 FS_PANEL_LETTER = 10.0
@@ -96,6 +97,20 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def save_lzw_tiff(fig, path: Path) -> None:
+    fig.savefig(
+        path,
+        dpi=DPI,
+        format="tiff",
+        facecolor="white",
+        pil_kwargs={"compression": "tiff_lzw"},
+    )
+    with Image.open(path) as im:
+        if im.mode != "RGB":
+            im = im.convert("RGB")
+            im.save(path, compression="tiff_lzw", dpi=(DPI, DPI))
 
 
 def clean_region(value: object) -> str:
@@ -259,7 +274,9 @@ def main() -> None:
     fig.subplots_adjust(left=0.004, right=0.996, top=0.995, bottom=0.015, wspace=0.02)
 
     out_png = OUT_DIR / "Figure1_period_maps.png"
+    out_tiff = OUT_DIR / "Figure_1.tiff"
     fig.savefig(out_png, dpi=DPI, facecolor="white")   # PNG only (comparison stage)
+    save_lzw_tiff(fig, out_tiff)
     fig_w_px = int(round(FIG_W * DPI))
     fig_h_px = int(round(FIG_H * DPI))
     plt.close(fig)
@@ -285,13 +302,13 @@ def main() -> None:
                 "shared_breaks", "font_family", "panel_label_pt", "legend_title_pt", "dpi",
             ],
             "value": [
-                "PNG only", len(kept_regions), len(map_gdf), len(removed),
+                "PNG and TIFF", len(kept_regions), len(map_gdf), len(removed),
                 "none (removed)", "Panel A, small locator in whitespace", "none",
                 "; ".join(BREAK_LABELS), "Arial", f"{FS_PANEL_LETTER} bold / {FS_PANEL_PERIOD} reg",
                 f"{FS_LEGEND_TITLE} regular", DPI,
             ],
             "expected": [
-                "PNG only", "223", "446", "6",
+                "PNG and TIFF", "223", "446", "6",
                 "none (removed)", "Panel A, small locator in whitespace", "none",
                 "; ".join(BREAK_LABELS), "Arial", f"{FS_PANEL_LETTER} bold / {FS_PANEL_PERIOD} reg",
                 f"{FS_LEGEND_TITLE} regular", str(DPI),
@@ -310,8 +327,9 @@ def main() -> None:
     hashes.to_csv(OUT_DIR / "Figure1_period_maps_source_hashes.csv", index=False, encoding="utf-8-sig")
 
     w_cm, h_cm = FIG_W * 2.54, FIG_H * 2.54
-    print("=== Figure 1 INSET vertical-legend FINAL v3 (PNG only) ===")
+    print("=== Figure 1 INSET vertical-legend FINAL v3 (PNG + TIFF) ===")
     print(f"Saved PNG: {out_png.relative_to(REPO_ROOT)}")
+    print(f"Saved TIFF: {out_tiff.relative_to(REPO_ROOT)}")
     print(f"Dimensions: {FIG_W} x {FIG_H} in  =  {w_cm:.2f} x {h_cm:.2f} cm  ({fig_w_px} x {fig_h_px} px @ {DPI} dpi)")
     print("Font: Arial | national Geumjeong outline: removed | Busan inset: Panel A small locator (no label)")
     print("Color breaks (per 100,000): " + "; ".join(BREAK_LABELS))

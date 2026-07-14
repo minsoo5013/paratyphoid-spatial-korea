@@ -13,10 +13,12 @@ required <- file.path(
   fig_dir,
   c(
     "Figure1_period_maps.png",
+    "Figure_1.tiff",
     "Figure1_period_maps.py",
     "Figure1_caption.txt",
     "Figure1_data_used.csv",
     "Figure2_moran_cases.png",
+    "Figure_2.tiff",
     "Figure2_moran_cases.py",
     "Figure2_caption.txt"
   )

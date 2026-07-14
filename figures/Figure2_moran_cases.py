@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Render paratyphoid Figure 2 BLACK/GREY FINAL (minimal, PNG only).
+"""Render paratyphoid Figure 2 BLACK/GREY FINAL (minimal, PNG + TIFF).
 
 Annotation-free black/grey journal version. No red/brown/salmon/pink anywhere.
 Structure, data, marker/p-value coding, and the 2010/2011 boundary are unchanged;
 all in-figure explanatory text is handled in the caption.
 
-Single Arial family; bold only on panel letters. PNG only.
+Single Arial family; bold only on panel letters. PNG and LZW-compressed TIFF.
 Source files read-only; output goes to figures/.
 """
 
@@ -26,6 +26,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.lines import Line2D
+from PIL import Image
 
 
 DPI = 600
@@ -73,6 +74,20 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def save_lzw_tiff(fig, path: Path) -> None:
+    fig.savefig(
+        path,
+        dpi=DPI,
+        format="tiff",
+        facecolor="white",
+        pil_kwargs={"compression": "tiff_lzw"},
+    )
+    with Image.open(path) as im:
+        if im.mode != "RGB":
+            im = im.convert("RGB")
+            im.save(path, compression="tiff_lzw", dpi=(DPI, DPI))
 
 
 def main() -> None:
@@ -147,7 +162,9 @@ def main() -> None:
     fig.subplots_adjust(left=0.093, right=0.985, top=0.985, bottom=0.110)
 
     out_png = OUT_DIR / "Figure2_moran_cases.png"
+    out_tiff = OUT_DIR / "Figure_2.tiff"
     fig.savefig(out_png, dpi=DPI, facecolor="white")   # PNG only
+    save_lzw_tiff(fig, out_tiff)
     fig_w_px, fig_h_px = int(round(FIG_W * DPI)), int(round(FIG_H * DPI))
     plt.close(fig)
 
@@ -172,13 +189,13 @@ def main() -> None:
                 "palette", "line_color", "bar_2002_color", "font_family", "dpi",
             ],
             "value": [
-                "PNG only", f"{df['year'].min()}-{df['year'].max()}", int(df["districts"].iloc[0]),
+                "PNG and TIFF", f"{df['year'].min()}-{df['year'].max()}", int(df["districts"].iloc[0]),
                 int(df.loc[df["year"] == 2002, "reported_cases"].iloc[0]),
                 "filled=p<0.05; open=p>=0.05", "2010.5 medium-light grey", "none",
                 "black/grey (no red)", LINE, BAR_2002, "Arial", DPI,
             ],
             "expected": [
-                "PNG only", "2001-2024", "223", "401", "filled=p<0.05; open=p>=0.05",
+                "PNG and TIFF", "2001-2024", "223", "401", "filled=p<0.05; open=p>=0.05",
                 "2010.5 medium-light grey", "none", "black/grey (no red)", "#333333", "#8F969C",
                 "Arial", "600",
             ],
@@ -195,8 +212,9 @@ def main() -> None:
     hashes.to_csv(OUT_DIR / "Figure2_moran_cases_source_hashes.csv", index=False, encoding="utf-8-sig")
 
     w_cm, h_cm = FIG_W * 2.54, FIG_H * 2.54
-    print("=== Figure 2 BLACK/GREY FINAL v3 (PNG only) ===")
+    print("=== Figure 2 BLACK/GREY FINAL v3 (PNG + TIFF) ===")
     print(f"Saved PNG: {out_png.relative_to(REPO_ROOT)}")
+    print(f"Saved TIFF: {out_tiff.relative_to(REPO_ROOT)}")
     print(f"Dimensions: {FIG_W} x {FIG_H} in  =  {w_cm:.2f} x {h_cm:.2f} cm  ({fig_w_px} x {fig_h_px} px @ {DPI} dpi)")
     print(f"line/sig-marker: {LINE} | open outline: {LINE} | general bar: {BAR} | 2002 bar: {BAR_2002}")
     print(f"zero line: REMOVED | vertical dashed: {DIVIDER} (0.6pt) | legend box border: {LEG_BORDER}")

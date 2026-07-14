@@ -1,0 +1,5 @@
+﻿source_file,sha256,access
+figures/Figure1_data_used.csv,dc80ec1ea8cc0bad6315a6f75765883cc63e1c74264decf5357bd25c822277d7,READ_ONLY
+data/raw/final.shp,5ac1619c86034645f04f5e209a7aa83c0b47e7569d0a8dbbc297f01a9ea390d7,READ_ONLY
+data/raw/final.shx,9cf985f72cf95990c0e32639fe37b8a2b5c5895fb18d57938695acb64ab7cc33,READ_ONLY
+data/raw/final.dbf,e2232a5b1ad5e179330d1ff5187788eeb6046faff6b1c61b3c2786eec04892d0,READ_ONLY

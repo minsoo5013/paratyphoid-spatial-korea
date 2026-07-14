@@ -21,7 +21,7 @@ negative-binomial Bayesian spatiotemporal model was fitted for the contemporary 
 ```
 R/          analysis scripts (numbered in execution order)
 data/       derived district-year analytic datasets + adjacency
-figures/    publication figure PNGs, captions, Figure 1 plotting data, and figure scripts
+figures/    publication figure PNG/TIFF files, captions, Figure 1 plotting data, and figure scripts
 results/    model-comparison, posterior, and sensitivity summary tables
 ```
 
